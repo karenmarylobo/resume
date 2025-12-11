@@ -1,0 +1,81 @@
+{
+  "basics": {
+    "name": "KAREN MARY LOBO",
+    "email": "karenmarylobo@gmail.com",
+    "linkedin": "https://in.linkedin.com/in/karen-mary-lobo",
+    "nationality": "Indian",
+    "summary": "Results-driven Team Lead and Full-Stack Developer with 7+ years of experience building scalable Angular applications and leading high-performing development teams. Expertise in modern web technologies, Agile methodologies, and technical mentorship."
+  },
+  "experience": [
+    {
+      "title": "Team Lead",
+      "company": "CodeMax IT Solutions",
+      "period": "2022–2025",
+      "bullets": [
+        "Led and mentored cross-functional developer team with focus on technical excellence and career growth",
+        "Conducted comprehensive code reviews to maintain coding standards and product quality",
+        "Coordinated sprint planning, analysis, and stakeholder requirement discussions",
+        "Managed task allocation, progress tracking, and delivery timelines across multiple projects",
+        "Facilitated daily stand-ups and periodic project status reviews with leadership",
+        "Developed onboarding programs for new team members",
+        "Partnered with QA team for defect analysis and resolution"
+      ]
+    },
+    {
+      "title": "Software Developer – UI/UX",
+      "company": "CodeMax IT Solutions",
+      "period": "2021–2022",
+      "bullets": [
+        "Designed and maintained Angular applications for financial services platform",
+        "Built responsive user interfaces with HTML, CSS, and JavaScript",
+        "Integrated RESTful APIs and managed JSON-based data workflows"
+      ]
+    },
+    {
+      "title": "Junior Developer – UI/UX",
+      "company": "CodeMax IT Solutions",
+      "period": "2019–2021",
+      "bullets": [
+        "Developed UI components for Angular 8 applications",
+        "Identified and resolved critical UI/UX issues and bugs",
+        "Maintained comprehensive development documentation"
+      ]
+    },
+    {
+      "title": "Assistant Developer",
+      "company": "CodeMax IT Solutions",
+      "period": "2018–2019",
+      "bullets": [
+        "Analyzed requirements and produced technical documentation",
+        "Built responsive layouts using HTML, CSS, and Bootstrap framework",
+        "Collaborated with clients to design and deploy landing pages"
+      ]
+    }
+  ],
+  "skills": {
+    "Frontend Development": ["Angular", "HTML5", "CSS3", "JavaScript", "Tailwind", "Bootstrap"],
+    "Backend & Databases": ["MySQL", "PostgreSQL", "RESTful APIs"],
+    "Tools & Platforms": ["Git", "Visual Studio Code", "Wappler", "Low-Code Development"],
+    "Methodologies": ["Agile", "Sprint Analysis", "Scrum"],
+    "Professional": ["Project Management", "Technical Documentation", "Team Leadership"]
+  },
+  "education": [
+    {
+      "degree": "Master of Science in Information Technology",
+      "school": "Parvatibai Chowgule College Of Arts & Science — Goa, India",
+      "period": "2015–2017"
+    },
+    {
+      "degree": "Bachelor of Computer Applications",
+      "school": "Rosary College of Commerce and Arts — Goa, India",
+      "period": "2012–2015"
+    }
+  ],
+  "recognition": [
+    {
+      "title": "Software Developer of the Quarter",
+      "period": "Jan–Mar 2023",
+      "detail": "Recognized for outstanding performance and leadership excellence"
+    }
+  ]
+}
