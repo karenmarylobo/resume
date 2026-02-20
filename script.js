@@ -168,4 +168,3 @@ async function generateDoc() {
             
             alert('✅ DOCX generated!');
         }
-    </script>
