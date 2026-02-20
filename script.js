@@ -159,29 +159,28 @@ function renderRecognition(recognition) {
         const children = [];
 
         // 1. Basics Section
-        children.push(
-            new Paragraph({
-                children: [new TextRun({ text: data.basics.name, bold: true, size: 48 })],
-                alignment: AlignmentType.CENTER
+children.push(
+    new Paragraph({
+        children: [new TextRun({ text: data.basics.name, bold: true, size: 48 })],
+        alignment: AlignmentType.CENTER
+    }),
+    new Paragraph({
+        children: [
+            new TextRun({ text: `${data.basics.email} | ` }),
+            new ExternalHyperlink({
+                children: [new TextRun({ text: "LinkedIn" })],
+                link: data.basics.linkedin
             }),
-            new Paragraph({
-                children: [
-    new TextRun({ text: `${data.basics.email} | ` }),
-new ExternalHyperlink({  // Or use Document's createHyperlink if available
-                children: [new TextRun({ text: item.detail })],  // Display text (could be URL or custom label)
-                link: item.detail  // Target URL
-            })
-    new TextRun({ text: ` | ${data.basics.nationality}` })
-],
-                alignment: AlignmentType.CENTER,
-                spacing: { after: 200 }
-            }),
-            new Paragraph({
-                children: [new TextRun(data.basics.summary)],
-                spacing: { after: 400 }
-            })
-        );
-
+            new TextRun({ text: ` | ${data.basics.nationality}` })
+        ],
+        alignment: AlignmentType.CENTER,
+        spacing: { after: 200 }
+    }),
+    new Paragraph({
+        children: [new TextRun(data.basics.summary)],
+        spacing: { after: 400 }
+    })
+);
         // 2. Experience Section (matches renderExperience structure)
         children.push(new Paragraph({
             text: "EXPERIENCE",
