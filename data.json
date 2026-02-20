@@ -53,11 +53,11 @@
     }
   ],
   "skills": {
-    "Frontend Development": ["Angular", "HTML5", "CSS3", "JavaScript", "Tailwind", "Bootstrap"],
-    "Backend & Databases": ["MySQL", "PostgreSQL", "RESTful APIs"],
-    "Tools & Platforms": ["Git", "Visual Studio Code", "Wappler", "Low-Code Development"],
+    "Professional": ["Project Management", "Technical Documentation", "Team Leadership"],
     "Methodologies": ["Agile", "Sprint Analysis", "Scrum"],
-    "Professional": ["Project Management", "Technical Documentation", "Team Leadership"]
+    "Tools & Platforms": ["Git", "Visual Studio Code", "Wappler", "Low-Code Development"],
+    "Frontend Development": ["HTML5", "CSS3", "JavaScript", "Tailwind", "Bootstrap","Angular"],
+    "Backend & Databases": ["MySQL", "PostgreSQL", "RESTful APIs"]
   },
   "education": [
     {
