@@ -11,7 +11,7 @@ fetch("data.json")
     renderExperience(data.experience);
     renderSkills(data.skills);
     renderEducation(data.education);
-    renderCertification(data.certifiction);
+    renderCertification(data.certification);
     renderRecognition(data.recognition);
   })
   .catch((error) => {
