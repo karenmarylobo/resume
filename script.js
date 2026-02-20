@@ -232,8 +232,26 @@ function renderRecognition(recognition) {
                 ]
             }));
         });
-
-        // 5. Recognition Section (matches renderRecognition structure)
+      
+        // 5. Certification Section (matches renderRecognition structure)
+        children.push(new Paragraph({
+            text: "CERTIFICATION",
+            heading: HeadingLevel.HEADING_1,
+            spacing: { after: 200 }
+        }));
+        data.certification.forEach(item => {
+            children.push(new Paragraph({
+                children: [
+            new TextRun({ text: item.title, bold: true }),
+            new TextRun("\n"),
+            doc.createHyperlink({  // Assumes 'doc' is your Document instance
+                text: item.detail,    // Display text (URL or custom label)
+                link: item.detail     // Target URL
+                ]
+            }));
+        });
+      
+        // 6. Recognition Section (matches renderRecognition structure)
         children.push(new Paragraph({
             text: "RECOGNITION",
             heading: HeadingLevel.HEADING_1,
