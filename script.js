@@ -165,10 +165,14 @@ function renderRecognition(recognition) {
                 alignment: AlignmentType.CENTER
             }),
             new Paragraph({
-                children: [new TextRun({
-                    text: `${data.basics.email} | ${data.basics.linkedin} | ${data.basics.nationality}`,
-                    size: 24
-                })],
+                children: [
+    new TextRun({ text: `${data.basics.email} | ` }),
+    doc.createHyperlink({
+        text: "LinkedIn",  // Display text
+        link: data.basics.linkedin  // Actual URL
+    }),
+    new TextRun({ text: ` | ${data.basics.nationality}` })
+],
                 alignment: AlignmentType.CENTER,
                 spacing: { after: 200 }
             }),
