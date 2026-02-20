@@ -167,10 +167,10 @@ function renderRecognition(recognition) {
             new Paragraph({
                 children: [
     new TextRun({ text: `${data.basics.email} | ` }),
-    doc.createHyperlink({
-        text: "LinkedIn",  // Display text
-        link: data.basics.linkedin  // Actual URL
-    }),
+new ExternalHyperlink({  // Or use Document's createHyperlink if available
+                children: [new TextRun({ text: item.detail })],  // Display text (could be URL or custom label)
+                link: item.detail  // Target URL
+            })
     new TextRun({ text: ` | ${data.basics.nationality}` })
 ],
                 alignment: AlignmentType.CENTER,
@@ -248,10 +248,10 @@ function renderRecognition(recognition) {
                 children: [
                     new TextRun({ text: item.title, bold: true }),
                     new TextRun("\n"), 
-                    doc.createHyperlink({ 
-                        text: item.detail,
-                        link: item.detail 
-                    })
+                   new ExternalHyperlink({  // Or use Document's createHyperlink if available
+                children: [new TextRun({ text: item.detail })],  // Display text (could be URL or custom label)
+                link: item.detail  // Target URL
+            })
                 ]
             }));
         });
