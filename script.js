@@ -124,47 +124,117 @@ function renderRecognition(recognition) {
 }
 
 
-//Generate Doc File on click
+// Updated generateDoc - fetches from data.json automatically
 async function generateDoc() {
-            const fileInput = document.getElementById('jsonFile');
-            const file = fileInput.files[0];
-            
-            if (!file) {
-                alert('Please select data.json first!');
-                return;
-            }
+    try {
+        // Fetch data.json (same structure as your render functions expect)
+        const response = await fetch("data.json");
+        if (!response.ok) throw new Error("Failed to load data.json");
+        const data = await response.json();
+        
+        const { Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType } = docx;
+        const children = [];
 
-            // Read JSON file
-            const text = await file.text();
-            const data = JSON.parse(text);
-            
-            // Create DOCX (assumes standard resume structure)
-            const { Document, Packer, Paragraph, TextRun, HeadingLevel } = docx;
-            const children = [
-                new Paragraph({ text: data.name || 'Resume', heading: HeadingLevel.HEADING_1 }),
-                new Paragraph(data.summary || ''),
-                new Paragraph({ text: 'EXPERIENCE', heading: HeadingLevel.HEADING_2 }),
-            ];
+        // 1. Basics Section
+        children.push(
+            new Paragraph({
+                children: [new TextRun({ text: data.basics.name, bold: true, size: 48 })],
+                alignment: AlignmentType.CENTER
+            }),
+            new Paragraph({
+                children: [new TextRun({
+                    text: `${data.basics.email} | ${data.basics.linkedin} | ${data.basics.nationality}`,
+                    size: 24
+                })],
+                alignment: AlignmentType.CENTER,
+                spacing: { after: 200 }
+            }),
+            new Paragraph({
+                children: [new TextRun(data.basics.summary)],
+                spacing: { after: 400 }
+            })
+        );
 
-            // Add experience bullets
-            (data.experience || []).forEach(job => {
-                children.push(new Paragraph(`${job.title} - ${job.company} (${job.dates})`));
-                (job.achievements || []).forEach(ach => {
-                    children.push(new Paragraph({ bullet: true, text: ach }));
-                });
+        // 2. Experience Section (matches renderExperience structure)
+        children.push(new Paragraph({
+            text: "EXPERIENCE",
+            heading: HeadingLevel.HEADING_1,
+            spacing: { after: 200 }
+        }));
+        
+        data.experience.forEach(item => {
+            children.push(new Paragraph({
+                children: [new TextRun({
+                    text: `${item.title} — ${item.company}     ${item.period}`,
+                    bold: true,
+                    size: 28
+                })]
+            }));
+            
+            item.bullets.forEach(bullet => {
+                children.push(new Paragraph({
+                    bullet: { level: 0 },
+                    children: [new TextRun(bullet)]
+                }));
             });
+            children.push(new Paragraph("")); // Spacer
+        });
 
-            // Skills
-            if (data.skills) {
-                children.push(new Paragraph({ text: 'SKILLS', heading: HeadingLevel.HEADING_2 }));
-                Object.entries(data.skills).forEach(([cat, items]) => {
-                    children.push(new Paragraph(`${cat.toUpperCase()}: ${items.join(', ')}`));
-                });
-            }
+        // 3. Skills Section (matches renderSkills structure)
+        children.push(new Paragraph({
+            text: "TECHNICAL SKILLS",
+            heading: HeadingLevel.HEADING_1,
+            spacing: { after: 200 }
+        }));
+        Object.keys(data.skills).forEach(category => {
+            children.push(new Paragraph({
+                children: [
+                    new TextRun({ text: category.toUpperCase() + ":", bold: true }),
+                    new TextRun(` ${data.skills[category].join(", ")}`)
+                ]
+            }));
+        });
 
-            const doc = new Document({ sections: [{ children }] });
-            const blob = await Packer.toBlob(doc);
-            saveAs(blob, `${data.name || 'resume'}_Resume.docx`);
-            
-            alert('✅ DOCX generated!');
-        }
+        // 4. Education Section (matches renderEducation structure)
+        children.push(new Paragraph({
+            text: "EDUCATION",
+            heading: HeadingLevel.HEADING_1,
+            spacing: { after: 200 }
+        }));
+        data.education.forEach(ed => {
+            children.push(new Paragraph({
+                children: [
+                    new TextRun({ text: ed.degree, bold: true }),
+                    new TextRun(`\n${ed.school} — ${ed.period}`)
+                ]
+            }));
+        });
+
+        // 5. Recognition Section (matches renderRecognition structure)
+        children.push(new Paragraph({
+            text: "RECOGNITION",
+            heading: HeadingLevel.HEADING_1,
+            spacing: { after: 200 }
+        }));
+        data.recognition.forEach(item => {
+            children.push(new Paragraph({
+                children: [
+                    new TextRun({ text: item.title, bold: true }),
+                    new TextRun(`\n${item.period}`),
+                    new TextRun(`\n${item.detail}`)
+                ]
+            }));
+        });
+
+        // Generate & Download
+        const doc = new Document({ sections: [{ children }] });
+        const blob = await Packer.toBlob(doc);
+        saveAs(blob, `${data.basics.name.replace(/\s+/g, '_')}_Resume.docx`);
+        
+        alert('✅ DOCX Generated from data.json!');
+        
+    } catch (error) {
+        console.error(error);
+        alert('❌ Error: ' + error.message);
+    }
+}
