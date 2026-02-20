@@ -122,3 +122,50 @@ function renderRecognition(recognition) {
     container.appendChild(block);
   });
 }
+
+
+//Generate Doc File on click
+async function generateDoc() {
+            const fileInput = document.getElementById('jsonFile');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                alert('Please select data.json first!');
+                return;
+            }
+
+            // Read JSON file
+            const text = await file.text();
+            const data = JSON.parse(text);
+            
+            // Create DOCX (assumes standard resume structure)
+            const { Document, Packer, Paragraph, TextRun, HeadingLevel } = docx;
+            const children = [
+                new Paragraph({ text: data.name || 'Resume', heading: HeadingLevel.HEADING_1 }),
+                new Paragraph(data.summary || ''),
+                new Paragraph({ text: 'EXPERIENCE', heading: HeadingLevel.HEADING_2 }),
+            ];
+
+            // Add experience bullets
+            (data.experience || []).forEach(job => {
+                children.push(new Paragraph(`${job.title} - ${job.company} (${job.dates})`));
+                (job.achievements || []).forEach(ach => {
+                    children.push(new Paragraph({ bullet: true, text: ach }));
+                });
+            });
+
+            // Skills
+            if (data.skills) {
+                children.push(new Paragraph({ text: 'SKILLS', heading: HeadingLevel.HEADING_2 }));
+                Object.entries(data.skills).forEach(([cat, items]) => {
+                    children.push(new Paragraph(`${cat.toUpperCase()}: ${items.join(', ')}`));
+                });
+            }
+
+            const doc = new Document({ sections: [{ children }] });
+            const blob = await Packer.toBlob(doc);
+            saveAs(blob, `${data.name || 'resume'}_Resume.docx`);
+            
+            alert('✅ DOCX generated!');
+        }
+    </script>
