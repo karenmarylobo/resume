@@ -11,6 +11,7 @@ fetch("data.json")
     renderExperience(data.experience);
     renderSkills(data.skills);
     renderEducation(data.education);
+    renderCertification(data.certifiction);
     renderRecognition(data.recognition);
   })
   .catch((error) => {
@@ -105,7 +106,29 @@ function renderEducation(education) {
     container.appendChild(block);
   });
 }
+function renderCertification(certification) {
+  const container = document.getElementById("certification");
+  container.innerHTML = "";
 
+  certification.forEach((item) => {
+    const block = document.createElement("div");
+    block.className = "mb-2";
+
+    const title = document.createElement("div");
+    title.className = "fw-semibold";
+    title.textContent = item.title;
+
+    const link = document.createElement("a");
+    link.href = item.detail;
+    link.target = "_blank";
+    link.className = "text-primary text-decoration-none";
+    link.textContent = item.detail;
+
+    block.appendChild(title);
+    block.appendChild(link);
+    container.appendChild(block);
+  });
+}
 function renderRecognition(recognition) {
   const container = document.getElementById("recognition");
   container.innerHTML = "";
