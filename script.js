@@ -148,7 +148,7 @@ function renderRecognition(recognition) {
 
 
 // Updated generateDoc - fetches from data.json automatically
-async function generateDoc() {
+ function generateDoc() {
     try {
         // Fetch data.json (same structure as your render functions expect)
         const response = await fetch("data.json");
