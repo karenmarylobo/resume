@@ -4,7 +4,7 @@
     "email": "karenmarylobo@gmail.com",
     "linkedin": "https://in.linkedin.com/in/karen-mary-lobo",
     "nationality": "Indian",
-    "summary": "Results-driven Team Lead and Full-Stack Developer with 7+ years of experience building scalable Angular applications and leading high-performing development teams. Expertise in modern web technologies, Agile methodologies, and technical mentorship."
+    "summary": "Results-driven Team Lead and Developer with 7+ years of experience building scalable applications and leading high-performing development teams. Expertise in modern web technologies, low code tools, agile methodologies, and technical mentorship."
   },
   "experience": [
     {
@@ -53,11 +53,35 @@
     }
   ],
   "skills": {
-    "Professional": ["Project Management", "Technical Documentation", "Team Leadership"],
-    "Methodologies": ["Agile", "Sprint Analysis", "Scrum"],
-    "Tools & Platforms": ["Git", "Visual Studio Code", "Wappler", "Low-Code Development"],
-    "Frontend Development": ["HTML5", "CSS3", "JavaScript", "Tailwind", "Bootstrap","Angular"],
-    "Backend & Databases": ["MySQL", "PostgreSQL", "RESTful APIs"]
+    "Professional": [
+      "Project Management",
+      "Technical Documentation",
+      "Team Leadership"
+    ],
+    "Methodologies": [
+      "Agile",
+      "Sprint Analysis",
+      "Scrum"
+    ],
+    "Tools & Platforms": [
+      "Git",
+      "Visual Studio Code",
+      "Wappler",
+      "Low-Code Development"
+    ],
+    "Frontend Development": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Tailwind",
+      "Bootstrap",
+      "Angular"
+    ],
+    "Backend & Databases": [
+      "MySQL",
+      "PostgreSQL",
+      "RESTful APIs"
+    ]
   },
   "education": [
     {
